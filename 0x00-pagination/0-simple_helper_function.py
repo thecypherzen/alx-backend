@@ -2,6 +2,7 @@
 """Contains definition of stellar function"""
 from typing import Optional, Mapping, Tuple
 
+
 def index_range(*args: Optional[Tuple[int]],
                 **kwargs: Optional[Mapping[str, int]]) -> Tuple:
     """A function that takes two integer arguments
