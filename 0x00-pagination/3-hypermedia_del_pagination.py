@@ -39,7 +39,7 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None,
+    def get_hyper_index(self, index: Optional[int] = None,
                         page_size: int = 10) -> Dict:
         """Enforces data integrity after deletes
 
@@ -61,9 +61,9 @@ class Server:
                receive rows indexed 10 to 19 included.
         """
         assert isinstance(index, int) and index >= 0 \
-            and index < len(self.__dataset)
-        assert isinstance(page_size, int) and page_size > 0
-
+            and index < len(self.__indexed_dataset)
+        assert isinstance(page_size, int) and page_size > 0 \
+            and page_size < len(self.__indexed_dataset)
         result = []
         next_idx = None
         current_idx = index
