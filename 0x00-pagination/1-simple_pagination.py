@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Defines a Server class and utility functions"""
 
 import csv
 import math
