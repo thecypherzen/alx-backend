@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 class Server:
@@ -39,7 +39,8 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+    def get_hyper_index(self, index: Optional[int] = None,
+                        page_size: int = 10) -> Dict:
         """Enforces data integrity after deletes
 
         Params:
@@ -59,7 +60,7 @@ class Server:
                but rows 3, 6 and 7 were deleted, the user should still
                receive rows indexed 10 to 19 included.
         """
-        assert isinstance(index, int) and iindex >= 0 \
+        assert isinstance(index, int) and index >= 0 \
             and index < len(self.__dataset)
         assert isinstance(page_size, int) and page_size > 0
 
