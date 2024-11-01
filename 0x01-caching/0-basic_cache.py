@@ -15,9 +15,8 @@ class BasicCache(BaseCaching):
         """Adds an item to cache
         If key or item is None, does nothing
         """
-        if any([not key, not item]):
-            pass
-        self.cache_data[key] = item
+        if all([key, item]):
+            self.cache_data[key] = item
 
     def get(self, key):
         """Returns value in cace at key
