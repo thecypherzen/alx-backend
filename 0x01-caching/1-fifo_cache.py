@@ -24,13 +24,13 @@ class FIFOCache(BaseCaching):
                by a new line
         """
         if all([key, item]):
-            if len(self.cache_data) >= self.MAX_ITEMS and \
-               key not in self.cache_data.keys():
-                old_key = self.queue.popleft()
-                del self.cache_data[old_key]
-                print(f"DISCARD {old_key}")
+            if key not in self.cache_data:
+                self.queue.append(key)
+                if len(self.cache_data) >= self.MAX_ITEMS:
+                    old_key = self.queue.popleft()
+                    del self.cache_data[old_key]
+                    print(f"DISCARD {old_key}")
             self.cache_data[key] = item
-            self.queue.append(key)
 
     def get(self, key):
         """Fetches a value from the cache with its key
