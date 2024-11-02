@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""A FIFO class"""
+"""A LIFO class"""
 
 from base_caching import BaseCaching
 from collections import deque
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """Defines a FIFO cache class"""
 
     def __init__(self):
@@ -19,16 +19,16 @@ class FIFOCache(BaseCaching):
         If key or item is None, it does nothing.
         If the number of items in self.cache_data is higher
           than <BaseCaching.MAX_ITEMS>:
-          (1). discards the first item put in cache (FIFO algorithm)
+          (1). discards the first item put in cache (LIFO algorithm)
           (2). prints DISCARD: with the <key> discarded, followed
                by a new line
         """
         if all([key, item]):
             if len(self.cache_data) >= self.MAX_ITEMS and \
                key not in self.cache_data.keys():
-                old_key = self.queue.popleft()
+                old_key = self.queue.pop()
                 del self.cache_data[old_key]
-                print(f"DISCARD {old_key}")
+                print(f"DISCARD: {old_key}")
             self.cache_data[key] = item
             self.queue.append(key)
 
