@@ -29,7 +29,7 @@ class FIFOCache(BaseCaching):
                 if len(self.cache_data) >= self.MAX_ITEMS:
                     old_key = self.queue.popleft()
                     del self.cache_data[old_key]
-                    print(f"DISCARD {old_key}")
+                    print(f"DISCARD: {old_key}")
             self.cache_data[key] = item
 
     def get(self, key):
