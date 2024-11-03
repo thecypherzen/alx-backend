@@ -24,7 +24,6 @@ class MRUCache(BaseCaching):
                by a new line
         """
         if all([key, item]):
-            print(self.order_list)
             if len(self.cache_data) >= self.MAX_ITEMS and \
                key not in self.cache_data:
                 old_key = self.order_list.pop()
