@@ -67,7 +67,6 @@ class LFUCache(BaseCaching):
             self.counts[key] = 0 if key not in self.counts \
                 else self.counts[key] + 1
 
-
     def get(self, key):
         """Fetches a value from the cache with its key
         Returns:
