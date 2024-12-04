@@ -9,3 +9,6 @@ const client = createClient()
       .then(() => {
         console.log('Redis client connected to the server');
       });
+
+
+export { client };

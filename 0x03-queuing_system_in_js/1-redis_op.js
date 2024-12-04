@@ -9,7 +9,6 @@ const client = await createClient()
     })
 
 await client.connect();
-console.log("connection established");
 if (client.isReady) {
   console.log('Redis client connected to the server');
 }
