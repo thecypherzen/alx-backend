@@ -1,6 +1,6 @@
 import { createQueue } from 'kue';
 
-const push_notification_code_2 = createQueue()
+const queue = createQueue();
 const jobs = [
   {
     phoneNumber: '4153518780',
@@ -49,23 +49,23 @@ const jobs = [
 ];
 
 jobs.forEach((task) => {
-  let job = push_notification_code_2
-      .create(task)
+  let job = queue
+      .create('push_notification_code_2', task)
       .save((err) => {
         if (err) {
           console.log(err);
         } else {
           console.log(`Notification job created: ${job.id}`);
         }
-      });
-  job
-    .on('job complete', () => {
-      console.log(`Notification job ${job.id} completed`)
-    })
-    .on('job failed', (msg) => {
-      console.log(`Notification job ${job.id} failed: ${msg}`)
-    })
-    .on('job progress', (level, data) => {
-      console.log(`Notification job ${ job.id } ${ level }% complete`)
-    })
+      })
 });
+queue
+  .on('job complete', (id) => {
+    console.log(`Notification job ${id} completed`)
+  })
+  .on('job failed', (id, msg) => {
+    console.log(`Notification job ${id} failed: ${msg}`)
+  })
+  .on('job progress', (id, level) => {
+    console.log(`Notification job ${ id } ${ level }% complete`)
+  });
